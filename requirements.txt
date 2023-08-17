@@ -1,0 +1,1 @@
+esptool # For flashing the esp flasher

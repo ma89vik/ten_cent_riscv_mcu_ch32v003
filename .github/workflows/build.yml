@@ -1,0 +1,11 @@
+name: Build
+on:
+  push
+jobs:
+  container-test-job:
+    runs-on: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003
+    steps:
+      - name: Build Project
+        run:
+          meson setup --cross-file cross_gcc.tools build
+          cd build && meson compile
