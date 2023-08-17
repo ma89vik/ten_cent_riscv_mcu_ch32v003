@@ -3,9 +3,12 @@ on:
   push
 jobs:
   container-test-job:
-    runs-on: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003
     steps:
       - name: Build Project
         run:
+          cd  /github/workspace
           meson setup --cross-file cross_gcc.tools build
           cd build && meson compile
