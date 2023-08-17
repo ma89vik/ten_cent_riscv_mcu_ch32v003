@@ -5,7 +5,7 @@ jobs:
   container-test-job:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003
+      image: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003:master
     steps:
       - name: Build Project
         run:
