@@ -2,13 +2,15 @@ name: Build
 on:
   push
 jobs:
-  container-test-job:
+  build-project:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/ma89vik/ten_cent_riscv_mcu_ch32v003:master
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Build Project
-        run:
-          cd  /github/workspace
+        run: |
+          ls
           meson setup --cross-file cross_gcc.tools build
           cd build && meson compile

@@ -18,13 +18,15 @@ endian = 'little'
 
 [properties]
 c_args      = [
-               'march=rv32ec',
-               'mabi=ilp32e',
+               '-march=rv32ec',
+               '-mabi=ilp32e',
                '-ffunction-sections',
                '-fdata-sections',
                ]
 
 c_link_args = [
+                '-march=rv32ec',
+                '-mabi=ilp32e',
                 '-Wl,--gc-sections',
                 '-nostdlib',
               ]
