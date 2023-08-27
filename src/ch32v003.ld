@@ -1,7 +1,7 @@
 MEMORY
 {
-  FLASH        : ORIGIN = 0x0000000, LENGTH = 0x4000  /* 16MB off-chip */
-  RAM          : ORIGIN = 0x2000000, LENGTH = 0x800 /* 2KB on-chip */
+  FLASH (rx)    : ORIGIN = 0x0000000, LENGTH = 0x4000  /* 16MB off-chip */
+  RAM (rwx)     : ORIGIN = 0x2000000, LENGTH = 0x800 /* 2KB on-chip */
 }
 
 ENTRY(__start)
@@ -14,8 +14,7 @@ SECTIONS
     *(.text.vectors)
     *(.text*)
     PROVIDE(_text_end = .);
-  }
-  > FLASH
+  } > FLASH
 
   . = ALIGN(4);
 
@@ -24,12 +23,12 @@ SECTIONS
     PROVIDE(_rodata_start = .);
     *(.rodata*)
     PROVIDE(_rodata_end = .);
-  }
-  > FLASH
+  } > FLASH
 
 
-  _load_addr_data = LOADADDR(.data);
-  .data ALIGN(4):
+   _load_addr_data = LOADADDR(.data);
+
+  .data :
   {
     PROVIDE(_data_start = .);
     *(.data)
@@ -44,8 +43,7 @@ SECTIONS
     PROVIDE(_bss_start = .);
     *(.bss*)
     PROVIDE(_bss_end = .);
-  }
-  > RAM
+  } > RAM
 
     /* Set stack top to end of RAM */
   __StackTop = ORIGIN(RAM) + LENGTH(RAM);
